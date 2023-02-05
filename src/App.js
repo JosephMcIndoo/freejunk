@@ -1,24 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import Mover from "./components/Mover.js";
+import { Routes, Route } from "react-router-dom";
+import Mainpage from "./pages/Mainpage.js";
+import Addparts from "./pages/Addparts.js";
+import Categories from "./pages/Categories.js";
+import junk from "./junk.js";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Mover ml="5px">
+      <Routes>
+        <Route path="/" element={<Mainpage junk={junk} />} />
+        <Route path="/add" element={<Addparts />} />
+        <Route path="/categories" element={<Categories />} />
+      </Routes>
+    </Mover>
   );
 }
 
