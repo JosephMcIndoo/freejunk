@@ -1,5 +1,11 @@
+import { Box, Button } from "@chakra-ui/react";
+
 function Addparts(props) {
-  return <div>Hello! We will add parts here!!</div>;
+  return (
+    <Box>
+      <Button>Test</Button>
+    </Box>
+  );
 }
 
 export default Addparts;

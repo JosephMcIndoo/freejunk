@@ -8,7 +8,7 @@ function Mainpage(props) {
       <Search mb="10px" />
       <Grid gap={5} templateColumns="repeat(6,1fr)">
         {props.junk.map((b) => (
-          <Itemcard item={b} />
+          <Itemcard item={b} id={b.id} />
         ))}
       </Grid>
     </div>
