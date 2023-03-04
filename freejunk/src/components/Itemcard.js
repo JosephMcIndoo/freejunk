@@ -13,16 +13,15 @@ import {
 } from "@chakra-ui/react";
 
 function Itemcard({ item }) {
+  const image = "../../../output/images/" + item.image_name;
   return (
-    <GridItem>
-      <Card maxW="220px">
+    <GridItem key={item.id}>
+      <Card maxW="220px" key={item.id}>
         <CardHeader>
-          <Heading size="md">
-            {item.amount} {item.title}
-          </Heading>
+          <Heading size="md">{item.name}</Heading>
         </CardHeader>
         <Image
-          src="https://upload.wikimedia.org/wikipedia/commons/c/c8/Garbage_bag.jpg"
+          src={image}
           borderRadius="sm"
           maxW={{ base: "50%", sm: "200px" }}
           ml="10px"
