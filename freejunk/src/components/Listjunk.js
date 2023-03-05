@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Itemcard from "./Itemcard.js";
 import { initJunk } from "../reducers/junkReducer.js";
 import { addJunk, setJunk } from "../reducers/junkReducer.js";
+import { Grid } from "@chakra-ui/react";
 
 function Listjunk(props) {
   const dispatch = useDispatch();
@@ -25,11 +26,11 @@ function Listjunk(props) {
   });
   console.log(junk);
   return (
-    <div>
+    <Grid gap={5} templateColumns="repeat(6,1fr)">
       {junk.map((j) => {
         return <Itemcard item={j} key={j.id} />;
       })}
-    </div>
+    </Grid>
   );
 }
 export default Listjunk;
