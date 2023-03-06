@@ -8,7 +8,11 @@ import { Grid } from "@chakra-ui/react";
 function Listjunk(props) {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(initJunk());
+    if (junk.length == 0) {
+      //This is an optimization to prevent reloads
+      dispatch(initJunk());
+      console.log("Getting init values from useEffect");
+    }
   }, [dispatch]);
 
   const junk = useSelector((state) => {
@@ -24,11 +28,10 @@ function Listjunk(props) {
         }
       });
   });
-  console.log(junk);
   return (
     <Grid gap={5} templateColumns="repeat(6,1fr)">
       {junk.map((j) => {
-        return <Itemcard item={j} key={j.id} />;
+        return <Itemcard item={j} />;
       })}
     </Grid>
   );

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getAllJunk } from "../services/junk.js";
+import junkServices from "../services/junk.js";
 
 const initialState = [];
 
@@ -8,10 +8,11 @@ const junkReducer = createSlice({
   initialState,
   reducers: {
     addJunk(state, action) {
-      console.log("adding!");
+      console.log(action.payload);
       return state.concat(action.payload);
     },
     setJunk(state, action) {
+      console.log(action.payload);
       return action.payload;
     },
   },
@@ -20,7 +21,16 @@ const junkReducer = createSlice({
 export function initJunk() {
   console.log("Getting Init Junk");
   return async (dispatch) => {
-    dispatch(setJunk(await getAllJunk()));
+    dispatch(setJunk(await junkServices.getAllJunk()));
+  };
+}
+
+export function postJunk(junk) {
+  console.log("Posting junk");
+  return async (dispatch) => {
+    const j = await junkServices.postJunk(junk);
+    console.log(j.name);
+    dispatch(addJunk(j));
   };
 }
 

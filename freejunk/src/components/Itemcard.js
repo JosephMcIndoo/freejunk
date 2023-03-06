@@ -16,9 +16,9 @@ function Itemcard({ item }) {
     "https://fjimages.blob.core.windows.net/images/" + item.image_name;
   const fallBack = "https://fjimages.blob.core.windows.net/images/noImage.jpg";
   return (
-    <GridItem key={item.id} colorScheme="brand">
-      <Card maxW="220px" key={item.id} colorScheme="brand">
-        <CardHeader>
+    <GridItem key={item.id}>
+      <Card maxW="220px" key={item.id}>
+        <CardHeader key={item.id}>
           <Heading size="md">{item.name}</Heading>
         </CardHeader>
         <Image
