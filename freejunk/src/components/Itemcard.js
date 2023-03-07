@@ -15,6 +15,7 @@ function Itemcard({ item }) {
   const image =
     "https://fjimages.blob.core.windows.net/images/" + item.image_name;
   const fallBack = "https://fjimages.blob.core.windows.net/images/noImage.jpg";
+  //Fall back is a generic image always on blob storage - can be changed.
   return (
     <GridItem key={item.id}>
       <Card maxW="220px" key={item.id}>

@@ -14,9 +14,10 @@ function Listjunk(props) {
       console.log("Getting init values from useEffect");
     }
   }, [dispatch]);
-
+  
+  //useSelector - what do I want from the global store...
   const junk = useSelector((state) => {
-    return state.junk
+    return state.junk //Remove anything not in filter
       .map((j) => {
         if (j.name.toLowerCase().includes(state.filter)) {
           return j;
@@ -28,6 +29,8 @@ function Listjunk(props) {
         }
       });
   });
+  //We create an <Itemcard> for each item in the array, and return it as an array
+  //This is automatically mapped onto the website
   return (
     <Grid gap={5} templateColumns="repeat(6,1fr)">
       {junk.map((j) => {

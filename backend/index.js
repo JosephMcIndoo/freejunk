@@ -1,57 +1,23 @@
+//Express is what handles the requests to the backend
 const express = require("express");
 const app = express();
+//CORs makes it so we can have cross origin resources - whatever that means
+//If we take it out it stops working so here it is
 const cors = require("cors");
+//The port for the server, different then the frontend.
 const PORT = 3003;
-const { PrismaClient } = require("@prisma/client");
-const prisma = new PrismaClient();
-const multer = require("multer");
-const upload = multer({ dest: "uploads/" }); //This may be incorrect
-const { BlobServiceClient, ContainerClient } = require("@azure/storage-blob");
+//The "how and what" to getting and posting junk.
+//Ideally there is one of these for each API serverice (like registering users)
+const junkRouter = require("./controllers/junk.js");
 
-const sasToken = process.env.REACT_APP_AZURE_STORAGE_SAS_TOKEN;
-const storageAccountName = process.env.REACT_APP_AZURE_STORAGE_RESOURCE_NAME;
-const imageURL = `https://${storageAccountName}.blob.core.windows.net/?${sasToken}`;
-console.log(imageURL);
-
+//Load all of the stuff we imported...
 app.use(cors());
 app.use(express.static("build"));
 app.use(express.json());
-//The above lets the json requests from the frontend actually work
-//It's a parser middleware :)
+//Load routers BELOW "middleware"
+app.use("/junk", junkRouter);
 
-const test = require("../output/formatted.json");
-
-app.get("/junk", (req, res) => {
-  prisma.junk.findMany().then((all) => {
-    res.json(all);
-  });
-});
-
-app.post("/junk", upload.single("image"), (req, res) => {
-  const body = req.body;
-  const file = body.image;
-  console.log(req.body);
-  console.log(file);
-  const blobClient = ContainerClient.getBlockBlogClient(file.name);
-  const options = { blobHTTPHeaders: { blobContentType: file.type } };
-
-  blobClient.uploadData(file, options).then(() => {
-    prisma.junk
-      .create({
-        data: {
-          image_name: body.image_name,
-          location: body.location,
-          description: body.description,
-          name: body.name,
-        },
-      })
-      .then((ret) => {
-        console.log(ret);
-        res.json(ret);
-      });
-  });
-});
-
+//Start the server
 app.listen(PORT, () => {
   console.log("Server is listening....");
 });

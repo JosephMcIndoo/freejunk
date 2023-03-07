@@ -1,3 +1,4 @@
+//This is the same idea as junkReducer - but considerably more simple.
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = ""; //No filter!

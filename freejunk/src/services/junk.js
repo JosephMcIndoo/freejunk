@@ -1,3 +1,5 @@
+//This file describes the "services" offered to talka to the backend
+//Axios allows for this communication.
 import axios from "axios";
 
 const url = "http://localhost:3003/junk";

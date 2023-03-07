@@ -1,3 +1,5 @@
+//A "Mover" is like the topmost bar on a website
+//It moves you between different pages
 import {
   Breadcrumb,
   BreadcrumbItem,

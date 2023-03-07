@@ -7,6 +7,8 @@ import { Provider } from "react-redux";
 import store from "./store.js";
 import { extendTheme } from "@chakra-ui/react";
 
+//This file is somewhat boiler plate - this is where our program / website starts
+
 const theme = extendTheme({
   colors: {
     brand: {
@@ -23,8 +25,12 @@ const theme = extendTheme({
     },
   },
 });
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
+//Provider gives access to its children (what it sourrounds) the "store"
+//Store is where all the data (and its associated functions) are kept
+//
+//Router gives access to pages (defined in App.js)
+//ChakraProvider gives access to ChakraUI themes
 root.render(
   <Provider store={store}>
     <Router>
@@ -34,7 +40,3 @@ root.render(
     </Router>
   </Provider>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
