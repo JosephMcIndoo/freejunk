@@ -12,11 +12,9 @@ const junkReducer = createSlice({
   initialState,
   reducers: {
     addJunk(state, action) {
-      console.log(action.payload);
       return state.concat(action.payload); //Return new array
     },
     setJunk(state, action) {
-      console.log(action.payload);
       return action.payload; //Return what was given
     },
     updateJunk(state, action) {

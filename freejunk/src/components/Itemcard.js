@@ -1,14 +1,11 @@
 import {
   Card,
   CardHeader,
-  CardBody,
-  CardFooter,
   Heading,
   Image,
   Stack,
   Text,
   Button,
-  Divider,
   GridItem,
 } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
@@ -23,6 +20,7 @@ function Itemcard({ item }) {
   const buttonHandler = (e) => {
     dispatch(reserveJunk(item.id));
   };
+
   return (
     <GridItem key={item.id}>
       <Card maxW="220px" key={item.id}>
@@ -37,7 +35,9 @@ function Itemcard({ item }) {
           ml="10px"
         />
         <Stack mt="4" spacing="3">
-          <Text ml="5px">{item.description}</Text>
+          <Text ml="5px">
+            {item.description === "Unknown" ? "" : item.description}
+          </Text>
           <Button variant="solid" colorScheme="brand" onClick={buttonHandler}>
             Claim
           </Button>

@@ -1,4 +1,3 @@
-import Itemcard from "../components/Itemcard.js";
 import Search from "../components/Search.js";
 import Listjunk from "../components/Listjunk.js";
 

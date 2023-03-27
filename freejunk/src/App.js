@@ -3,7 +3,6 @@ import { Routes, Route } from "react-router-dom";
 import Mainpage from "./pages/Mainpage.js";
 import Addparts from "./pages/Addparts.js";
 import Categories from "./pages/Categories.js";
-import junk from "./junk.js";
 
 //This is the high level description of what our website does. Hence why
 //it is only routes. Routes are different pages at an address.

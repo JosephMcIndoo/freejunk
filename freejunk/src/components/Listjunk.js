@@ -2,18 +2,17 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Itemcard from "./Itemcard.js";
 import { initJunk } from "../reducers/junkReducer.js";
-import { addJunk, setJunk } from "../reducers/junkReducer.js";
 import { Grid } from "@chakra-ui/react";
 
 function Listjunk(props) {
   const dispatch = useDispatch();
   useEffect(() => {
-    if (junk.length == 0) {
+    if (junk.length === 0) {
       //This is an optimization to prevent reloads
       dispatch(initJunk());
       console.log("Getting init values from useEffect");
     }
-  }, [dispatch]);
+  }, []);
 
   //useSelector - what do I want from the global store...
   const junk = useSelector((state) => {
@@ -22,11 +21,10 @@ function Listjunk(props) {
         if (j.name.toLowerCase().includes(state.filter)) {
           return j;
         }
+        return null;
       })
       .filter((j) => {
-        if (j != null) {
-          return j;
-        }
+        return j;
       });
   });
   //We create an <Itemcard> for each item in the array, and return it as an array
