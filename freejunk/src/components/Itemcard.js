@@ -11,11 +11,18 @@ import {
   Divider,
   GridItem,
 } from "@chakra-ui/react";
+import { useDispatch } from "react-redux";
+import { reserveJunk } from "../reducers/junkReducer.js";
+
 function Itemcard({ item }) {
   const image =
     "https://fjimages.blob.core.windows.net/images/" + item.image_name;
   const fallBack = "https://fjimages.blob.core.windows.net/images/noImage.jpg";
   //Fall back is a generic image always on blob storage - can be changed.
+  const dispatch = useDispatch();
+  const buttonHandler = (e) => {
+    dispatch(reserveJunk(item.id));
+  };
   return (
     <GridItem key={item.id}>
       <Card maxW="220px" key={item.id}>
@@ -31,7 +38,7 @@ function Itemcard({ item }) {
         />
         <Stack mt="4" spacing="3">
           <Text ml="5px">{item.description}</Text>
-          <Button variant="solid" colorScheme="brand">
+          <Button variant="solid" colorScheme="brand" onClick={buttonHandler}>
             Claim
           </Button>
         </Stack>

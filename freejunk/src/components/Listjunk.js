@@ -14,7 +14,7 @@ function Listjunk(props) {
       console.log("Getting init values from useEffect");
     }
   }, [dispatch]);
-  
+
   //useSelector - what do I want from the global store...
   const junk = useSelector((state) => {
     return state.junk //Remove anything not in filter
