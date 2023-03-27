@@ -25,14 +25,19 @@ function Itemcard({ item }) {
     <GridItem key={item.id}>
       <Card maxW="220px" key={item.id}>
         <CardHeader key={item.id}>
-          <Heading size="md">{item.name}</Heading>
+          <Heading size="md">
+            {item.name === "" ? "Unknown" : item.name}
+          </Heading>
         </CardHeader>
         <Image
           src={image}
           fallbackSrc={fallBack}
           borderRadius="sm"
-          maxW={{ base: "50%", sm: "200px" }}
           ml="10px"
+          boxSize="150px"
+          loading="lazy"
+          fit="cover"
+          layout="fill"
         />
         <Stack mt="4" spacing="3">
           <Text ml="5px">

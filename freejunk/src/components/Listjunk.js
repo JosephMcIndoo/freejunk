@@ -18,7 +18,7 @@ function Listjunk(props) {
   const junk = useSelector((state) => {
     return state.junk //Remove anything not in filter
       .map((j) => {
-        if (j.name.toLowerCase().includes(state.filter)) {
+        if (j.name.toLowerCase().includes(state.filter.toLowerCase())) {
           return j;
         }
         return null;

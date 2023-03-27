@@ -6,7 +6,7 @@ function Search(props) {
   const dispatch = useDispatch();
   function handleChange(event) {
     const search = event.target.value;
-    dispatch(setFilter(search.toLowerCase(search)));
+    dispatch(setFilter(search));
   }
 
   const curFilter = useSelector((state) => {
