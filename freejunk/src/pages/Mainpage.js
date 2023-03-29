@@ -1,23 +1,25 @@
 import Itemcard from "../components/Itemcard.js";
-import Search from "../components/Search.js";
 import Listjunk from "../components/Listjunk.js";
-import Sidebar from "../components/Sidebar.js";
-import "./mainpage.css";
-import { Flex, Box } from "@chakra-ui/react";
+import { Flex, Box, Grid,GridItem} from "@chakra-ui/react";
+import Sidebar from "../components/Sidebar.js"
 
 //Very high level function again, dive into each component to get an idea
 function Mainpage(props) {
   return (
     <div>
-      <Search mb="10px" />
-      <Flex>
-        <Box>
-          <Sidebar />
-        </Box>
-        <Box>
-          <Listjunk />
-        </Box>
-      </Flex>
+      <Grid gap={5} templateAreas={`"header header"
+                  "nav main"
+                  "nav footer"`} gridTemplateRows={'50px 1fr 30px'}
+                  gridTemplateColumns={'150px 1fr'}
+                  h='200px'
+                  gap='1'>
+          <GridItem area={'nav'}>
+            <Sidebar />
+          </GridItem>
+          <GridItem area={'main'}>
+            <Listjunk />
+          </GridItem>
+      </Grid>
     </div>
   );
 }

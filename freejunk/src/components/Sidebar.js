@@ -6,6 +6,7 @@ import {
     VStack,
     Button
 } from "@chakra-ui/react";
+import Search from "./Search.js";
 
 
 // Temporary category list
@@ -47,6 +48,7 @@ const Sidebar = () => {
             <Button colorScheme='teal'>
                 Update Filters
             </Button>
+            <Search mb="10px" />
         </Box>
     )
 }
