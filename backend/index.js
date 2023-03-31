@@ -16,6 +16,7 @@ app.use(express.static("build"));
 app.use(express.json());
 //Load routers BELOW "middleware"
 app.use("/junk", junkRouter);
+//z.umn.edu/freejunk:3003/junk 
 
 //Start the server
 app.listen(PORT, () => {

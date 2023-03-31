@@ -12,12 +12,27 @@ const junkReducer = createSlice({
   initialState,
   reducers: {
     addJunk(state, action) {
-      console.log(action.payload);
       return state.concat(action.payload); //Return new array
     },
     setJunk(state, action) {
-      console.log(action.payload);
       return action.payload; //Return what was given
+    },
+    updateJunk(state, action) {
+      //This is wrong and should be fixed!
+      return state.map((j) => {
+        if (j.id === action.payload.id) {
+          return action.payload;
+        }
+        return j;
+      });
+    },
+    removeJunk(state, action) {
+      return state.filter((j) => {
+        if (j.id === action.payload.id) {
+          return null;
+        }
+        return j;
+      });
     },
   },
 });
@@ -41,5 +56,13 @@ export function postJunk(junk) {
   };
 }
 
-export const { addJunk, setJunk } = junkReducer.actions;
+export function reserveJunk(id) {
+  console.log("Reserving " + id);
+  return async (dispatch) => {
+    const j = await junkServices.reserveJunk(id);
+    dispatch(removeJunk(j));
+  };
+}
+
+export const { addJunk, setJunk, updateJunk, removeJunk } = junkReducer.actions;
 export default junkReducer.reducer;

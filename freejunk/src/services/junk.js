@@ -10,10 +10,14 @@ export async function getAllJunk() {
 export async function postJunk(junk) {
   return (await axios.post(junk)).data;
 }
+export async function reserveJunk(id) {
+  return (await axios.delete(url + "/" + id)).data;
+}
 
 const junkServices = {
   getAllJunk,
   postJunk,
+  reserveJunk,
 };
 
 export default junkServices;

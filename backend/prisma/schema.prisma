@@ -16,4 +16,5 @@ model Junk{
   location String
   description String
   image_name String
+  reserved Boolean
 }
