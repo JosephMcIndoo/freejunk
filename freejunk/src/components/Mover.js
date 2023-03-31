@@ -28,6 +28,11 @@ function Mover(props) {
             Categories
           </BreadcrumbLink>
         </BreadcrumbItem>
+        <BreadcrumbItem>
+          <BreadcrumbLink as={Link} to="/gamble">
+            Gamble
+          </BreadcrumbLink>
+        </BreadcrumbItem>
       </Breadcrumb>
 
       <Box ml={props.ml}>{props.children}</Box>

@@ -31,6 +31,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 //
 //Router gives access to pages (defined in App.js)
 //ChakraProvider gives access to ChakraUI themes
+
 root.render(
   <Provider store={store}>
     <Router>

@@ -6,12 +6,12 @@ import {
   Stack,
   Text,
   Button,
-  GridItem,
+  Center,
 } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import { reserveJunk } from "../reducers/junkReducer.js";
 
-function Itemcard({ item }) {
+function Itemcard({ className, item }) {
   const image =
     "https://fjimages.blob.core.windows.net/images/" + item.image_name;
   const fallBack = "https://fjimages.blob.core.windows.net/images/noImage.jpg";
@@ -22,23 +22,24 @@ function Itemcard({ item }) {
   };
 
   return (
-    <GridItem key={item.id}>
+    <div className={className}>
       <Card maxW="220px" key={item.id}>
         <CardHeader key={item.id}>
           <Heading size="md">
             {item.name === "" ? "Unknown" : item.name}
           </Heading>
         </CardHeader>
-        <Image
-          src={image}
-          fallbackSrc={fallBack}
-          borderRadius="sm"
-          ml="10px"
-          boxSize="150px"
-          loading="lazy"
-          fit="cover"
-          layout="fill"
-        />
+        <Center>
+          <Image
+            src={image}
+            fallbackSrc={fallBack}
+            borderRadius="sm"
+            ml="5px"
+            boxSize="150px"
+            loading="lazy"
+            fit="cover"
+          />
+        </Center>
         <Stack mt="4" spacing="3">
           <Text ml="5px">
             {item.description === "Unknown" ? "" : item.description}
@@ -48,7 +49,7 @@ function Itemcard({ item }) {
           </Button>
         </Stack>
       </Card>
-    </GridItem>
+    </div>
   );
 }
 
