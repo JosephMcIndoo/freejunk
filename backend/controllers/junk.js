@@ -17,9 +17,15 @@ const upload = multer({ dest: "uploads/" }); //This may be incorrect
 //This is a get request at where junk router is placed, followed by /
 //In this application, that means z.umn.edu/freejunk:3003/freejunk/
 junkRouter.get("/", (req, res) => {
-  prisma.junk.findMany().then((all) => {
-    res.json(all);
-  });
+  prisma.junk
+    .findMany({
+      where: {
+        reserved: false,
+      },
+    })
+    .then((all) => {
+      res.json(all);
+    });
 });
 
 //A post request - asks to upload something at this url.
@@ -42,6 +48,7 @@ junkRouter.post("/", upload.single("image"), (req, res) => {
           location: body.location,
           description: body.description,
           name: body.name,
+          reserved: false,
         },
       })
       .then((ret) => {
@@ -49,6 +56,22 @@ junkRouter.post("/", upload.single("image"), (req, res) => {
         res.json(ret); //We return what we uploaded, as expected
       });
   });
+});
+
+junkRouter.delete("/:id", (req, res) => {
+  prisma.junk
+    .update({
+      where: {
+        id: Number(req.params.id),
+      },
+      data: {
+        reserved: true,
+      },
+    })
+    .then((ret) => {
+      console.log("Removed" + req.id);
+      res.json(ret);
+    });
 });
 
 module.exports = junkRouter; //This allows us to import it later on
